@@ -60,3 +60,7 @@ a:hover[id="nav-item"], a:active[id="nav-item"] {
 .contact {
   font-size: 15px;
 }
+
+li[id="subItem"] {
+  list-style-type: circle;
+}
