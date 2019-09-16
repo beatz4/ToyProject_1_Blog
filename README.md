@@ -11,9 +11,6 @@
 
 # * Node JS 사용
 
-# * Mongo DB 사용
-- Mongo DB 사용을 위해 Node JS를 사용해야한다.
-
 - Web Server System
 - Open Source System
 - JaavaScript on the server
@@ -31,3 +28,6 @@
 -> 생성한 포트로 접속
 
 - 외부 라이브러리로 만들경우 함수명 앞에 exports.접두어를 붙혀서 외부 호출이 가능하도록 한다.
+
+# * Mongo DB 사용
+- Mongo DB 사용을 위해 Node JS를 사용해야한다.
