@@ -2,15 +2,65 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
-var events = require('events');
-var eventEmitter = new events.EventEmitter();
+var nodemailer = require('nodemailer');
 
-var myEventHandler = function() {
-    console.log('I hear a scream!');
-}
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'yourmail@gmail.com',
+        pass: 'yourpassword'
+    }
+});
 
-eventEmitter.on('scream', myEventHandler);
-eventEmitter.emit('scream');
+var mailOptions = {
+    from: 'youremail@gmail.com',
+    to: 'myfriend@yahoo.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Email sent: ' + info.response);
+    }
+});
+
+// ********* file upload
+// var formidable = require('formidable');
+
+// http.createServer(function(req, res) {
+//     if (req.url == '/fileupload') {
+//         var form = new formidable.IncomingForm();
+//         form.parse(req, function(err, fields, files) {
+//             var oldpath = files.filetoupload.path;
+//             var newpath = 'C:/Users/beatz/Documents/Project/ToyProject_1_Blog/js/test/' + files.filetoupload.name;
+//             fs.rename(oldpath, newpath, function(err) {
+//                 if (err) throw err;
+//                 res.write('File uploaded');
+//             res.end();
+//             });
+//         });
+//     } else {
+//         res.writeHead(200, {'Content-Type': 'text/html'});
+//         res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
+//         res.write('<input type="file" name="filetoupload"><br>');
+//         res.write('<input type="submit">');
+//         res.write('</form>');
+//     }
+// }).listen(8080);
+
+// ***** module event
+// var events = require('events');
+// var eventEmitter = new events.EventEmitter();
+
+// var myEventHandler = function() {
+//     console.log('I hear a scream!');
+// }
+
+// eventEmitter.on('scream', myEventHandler);
+// eventEmitter.emit('scream');
 
 // ********* node js event
 // var rs = fs.createReadStream('./demofile.txt');
