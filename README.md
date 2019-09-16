@@ -37,3 +37,5 @@ sudo lsof -i :"포트 번호"
 
 - 프로세스 종료
 sudo kill -9 "프로세스 번호"
+
+test
