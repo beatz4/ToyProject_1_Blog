@@ -2,21 +2,46 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
-http.createServer(function (req, res) {
-    var q = url.parse(req.url, true);
-    var filename = ".." + q.pathname;
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
 
-    fs.readFile(filename, function(err, data) {
-        if (err) {
-            res.writeHead(404, {'Content-Type': 'text/html'});
-            return res.end("404 Not Found");
-        }
+var myEventHandler = function() {
+    console.log('I hear a scream!');
+}
 
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write(data);
-        return res.end();
-    });
-}).listen(8080);
+eventEmitter.on('scream', myEventHandler);
+eventEmitter.emit('scream');
+
+// ********* node js event
+// var rs = fs.createReadStream('./demofile.txt');
+// rs.on('open', function() {
+//     console.log('The file is open');
+// });
+
+// ********* use npm library - upper-case
+// var uc = require('upper-case');
+// http.createServer(function(req, res) {
+//     res.writeHead(200, {'Content-Type': 'text/html'});
+//     res.write(uc("Hello World"));
+//     res.end();
+// }).listen(8080);
+
+// url 주소에 따라 해당 파일을 찾아서 open
+// http.createServer(function (req, res) {
+//     var q = url.parse(req.url, true);
+//     var filename = ".." + q.pathname;
+
+//     fs.readFile(filename, function(err, data) {
+//         if (err) {
+//             res.writeHead(404, {'Content-Type': 'text/html'});
+//             return res.end("404 Not Found");
+//         }
+
+//         res.writeHead(200, {'Content-Type': 'text/html'});
+//         res.write(data);
+//         return res.end();
+//     });
+// }).listen(8080);
 
 // var adr = 'http://localhost:8080/index.html?year=2017&month=february';
 // var q = url.parse(adr, true);
