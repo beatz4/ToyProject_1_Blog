@@ -30,3 +30,33 @@ http.createServer(function (req, res) {
 myDateTime = function() {
     return Date();
 };
+
+// append the file
+fs.appendFile('mynewfile.txt', 'Hello content!', function(err) {
+    if (err) throw err;
+    console.log('Saved!');
+});
+
+// open the file
+fs.open('mynewfile2.txt', 'w', function(err, file) {
+    if (err) throw err;
+    console.log('Saved!');
+});
+
+// write the file
+fs.writeFile('mynewfile3.txt', 'Hello content!', function(err) {
+    if (err) throw err;
+    console.log('Saved!');
+});
+
+// delete file
+fs.unlink('mynewfile2.txt', function (err) {
+    if (err) throw err;
+    console.log('File deleted!');
+});
+
+// rename file
+fs.rename('mynewfile1.txt', 'myrenamedfile.txt', function (err) {
+    if (err) throw err;
+    console.log('File Renamed!');
+});
