@@ -8,11 +8,7 @@
 - 3주 : post에 쓰기/ 읽기등등 기능을 js파일을 연동하여 구현
 - 4주 : 테스트 및 디버깅
 
-
 # * Node JS 사용
-
-# * Mongo DB 사용
-- Mongo DB 사용을 위해 Node JS를 사용해야한다.
 
 - Web Server System
 - Open Source System
@@ -32,4 +28,12 @@
 
 - 외부 라이브러리로 만들경우 함수명 앞에 exports.접두어를 붙혀서 외부 호출이 가능하도록 한다.
 
-aaaa
+# * Mongo DB 사용
+- Mongo DB 사용을 위해 Node JS를 사용해야한다.
+
+# * mac 기본 명령어
+- 포트 사용 프로세스 확인
+sudo lsof -i :"포트 번호"
+
+- 프로세스 종료
+sudo kill -9 "프로세스 번호"
