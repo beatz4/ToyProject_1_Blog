@@ -1,4 +1,3 @@
-var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
@@ -6,12 +5,49 @@ MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
 
-    // 1개의 object에 다른 값을 부여할 수 없다!!
-    dbo.collection("customers").find({}, { projection: {name: 0, address: 1}}).toArray(function(err, result) {
+    dbo.dropCollection("customers", function(err, delOK) { 
         if (err) throw err;
-        console.log(result);
+        if (delOK) console.log("Collection deleted");
         db.close();
     });
+
+
+    // dbo.collection("customers").drop(function (err, delOK) {
+    //     if (err) throw err;
+    //     if (delOK) console.log("Collection deleted");
+    //     db.close();
+    // });
+
+    // var myquery = { address: /^A/ };
+    // dbo.collection("customers").deleteMany(myquery, function(err, obj) {
+    //     if (err) throw err;
+    //     console.log(obj.result.n + " document(s) deleted");
+    //     db.close();
+
+    // });
+
+    // sort
+    // var mysort = { name: -1 };
+    // dbo.collection("customers").find().sort(mysort).toArray(function(err, result) {
+    //     if (err) throw err;
+    //     console.log(result);
+    //     db.close();
+    // });
+
+    // var query = { address: /^S/ };      // start with the letter "S"
+    // dbo.collection("customers").find(query).toArray(function(err, result) {
+    //     if (err) throw err;
+    //     console.log(result);
+    //     db.close();
+    // });
+
+    // 1개의 object에 다른 값을 부여할 수 없다!!
+    // dbo.collection("customers").find({}, { projection: {_id:0, name: 1, address: 1}}).toArray(function(err, result) {
+    //     if (err) throw err;
+    //     //console.log(result);
+    //     console.log(result[2].address);
+    //     db.close();
+    // });
 
     // dbo.collection("customers").find({}, { projection: { _id: 0, name: 1, address: 1 }}).toArray(function(err, result) {
     //     if (err) throw err;

@@ -36,7 +36,10 @@
 - Mongo DB 사용을 위해 Node JS를 사용해야한다??
 
 1. create mongo db client
+2. create mongo collection
+3. add/update/delete.....items
 
+- ns not found : error 메시지는 존재하지 않는 collection을 drop 시도하였을 경우 발생
 
 # ----------------------------------- * TIPS -----------------------------------
 
