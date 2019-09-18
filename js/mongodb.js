@@ -5,11 +5,95 @@ MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("mydb");
 
-    dbo.dropCollection("customers", function(err, delOK) { 
+    dbo.collection("orders").aggregate([
+        { $lookup: 
+            {
+                from: 'products',
+                localField: 'product_id',
+                foreignField: '_id',
+                as: 'orderdetails'
+            }
+        }
+    ]).toArray(function(err, res) {
         if (err) throw err;
-        if (delOK) console.log("Collection deleted");
+        console.log(JSON.stringify(res));
         db.close();
-    });
+    })
+
+    // dbo.createCollection("orders", function(err, res) {
+    //     if (err) throw err;
+    //     console.log("Collection created!");
+       
+    // });
+
+    // var myobj = { _id: 1, product_id: 154, status: 1 };
+
+    // dbo.collection("orders").insertOne(myobj, function(err, res) {
+    //     if (err) throw err;
+    //     console.log("1 document inserted");
+        
+    // });
+
+    // dbo.createCollection("products", function(err, res) {
+    //     if (err) throw err;
+    //     console.log("products collection created!");
+      
+    // });
+
+    // myobj = [
+    //     { _id: 154, name: 'Chocolate Heaven' },
+    //     { _id: 155, name: 'Tasty Lemons' },
+    //     { _id: 156, name: 'Vanilla Dreams' }
+    // ];
+
+    // dbo.collection("products").insertMany(myobj, function(err, res) {
+    //     if (err) throw err;
+    //     console.log("some documents inserted!");
+    // });
+
+    // dbo.collection("orders").find({}).toArray(function(err, result) {
+    //     if (err) throw err;
+    //     console.log(result);
+    //     db.close();
+    // });
+
+    // dbo.collection("products").find({}).toArray(function(err, result) {
+    //     if (err) throw err;
+    //     console.log(result);
+    //     db.close();
+    // });
+
+    // dbo.collection("customers").find().limit(5).toArray(function(err, result) {
+    //     if (err) throw err;
+    //     console.log(result);
+    //     db.close();
+    // });
+
+    // var myquery = { address: /^S/ };
+    // var newvalues = { $set: { name: "Minnie" } };
+    // dbo.collection("customers").updateMany(myquery, newvalues, function (err, res) {
+    //     if (err) throw err;
+    //     console.log(res.result.nModified + " document(s) updated");
+    //     console.log(res.result.nModified);
+    //     db.close();
+    // });
+
+
+    // var myquery = { address: "Valley 345" };    
+
+    // var newvalues = { $set: {name: "Mickey", address: "Canyon 123"}};
+    // dbo.collection("customers").updateOne(myquery, newvalues, function(err, res) {
+    //     if (err) throw err;
+    //     console.log("1 document updated");
+    //     db.close();
+    // });
+
+
+    // dbo.dropCollection("customers", function(err, delOK) { 
+    //     if (err) throw err;
+    //     if (delOK) console.log("Collection deleted");
+    //     db.close();
+    // });
 
 
     // dbo.collection("customers").drop(function (err, delOK) {
