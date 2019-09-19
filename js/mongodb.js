@@ -3,22 +3,66 @@ var url = "mongodb://localhost:27017/";
 
 MongoClient.connect(url, function (err, db) {
     if (err) throw err;
-    var dbo = db.db("mydb");
+    var dbo = db.db("post");
 
-    dbo.collection("orders").aggregate([
-        { $lookup: 
-            {
-                from: 'products',
-                localField: 'product_id',
-                foreignField: '_id',
-                as: 'orderdetails'
-            }
-        }
-    ]).toArray(function(err, res) {
+    dbo.createCollection("post", function(err, res) {
         if (err) throw err;
-        console.log(JSON.stringify(res));
+        console.log("Post collection created!");
         db.close();
-    })
+    });
+
+    dbo.createCollection("reply", function(err, res) {
+        if (err) throw err;
+        console.log("Reply collection created!");
+        db.close();
+    });
+
+    // increament function
+    function getNextWequence(name) {
+        var ret = db.counters.findAndModify(
+            {
+                query: { _id: name },
+                update: { $inc: {seq: 1 }},
+                new: true
+            }
+        );
+    }
+
+
+    //
+    // POST Table
+    myobj = [
+        { _id: 154, name: 'Chocolate Heaven' },
+        { _id: 155, name: 'Tasty Lemons' },
+        { _id: 156, name: 'Vanilla Dreams' }
+    ];
+
+
+    dbo.collection("post").insertMany(myobj, function (err, res) {
+        if (err) throw err;
+        console.log(res);
+
+        // console.log("Number of documents inserted");
+        // console.log(res.insertedCount)
+        // console.log(res.ops)
+        db.close();
+    });
+
+
+    // dbo.collection("orders").aggregate([
+    //     { $lookup: 
+    //         {
+    //             from: 'products',
+    //             localField: 'product_id',
+    //             foreignField: '_id',
+    //             as: 'orderdetails'
+    //         }
+    //     }
+    // ]).toArray(function(err, res) {
+    //     if (err) throw err;
+    //     console.log(JSON.stringify(res));
+    //     db.close();
+    // })
 
     // dbo.createCollection("orders", function(err, res) {
     //     if (err) throw err;
