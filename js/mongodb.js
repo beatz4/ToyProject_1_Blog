@@ -18,7 +18,7 @@ MongoClient.connect(url, function (err, db) {
     });
 
     // increament function
-    function getNextWequence(name) {
+    function getNextSequence(name) {
         var ret = db.counters.findAndModify(
             {
                 query: { _id: name },
