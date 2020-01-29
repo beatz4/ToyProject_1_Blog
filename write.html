@@ -5,39 +5,17 @@
         <title>글쓰기</title>        
     </head>
     <body>
-        <form action="post.html" method="post" onsubmit="return formCheck();">
-            제목 : <input type="text" name="title"/><br/>
-            작성자 : <input type="text" name="writer"/><br/>
-            날짜 : <input type="text" name="regdate" /><br/>
-            content : <textarea rows="10" cols="20" name="content"></textarea><br>
-            <input type="submit" />
-        </form>
         <script>
             function formCheck() {
-                var title = document.forms[0].title.value;
-                alert('title');
-        
-                var wrtier = document.forms[0].wrtier.value;
-        
-                alert('wrtier');
-                if (wrtier == null || wrtier == "") {
-                    alert('fucking');
-                }
-        
-                var regdate = document.forms[0].regdate.value;
-                var content = document.forms[0].content.value;
-        
-                alert(title);
-                
-                if (title == null || title == "") {
+                if (fr.title.value == null || fr.title.value == "") {
                     alert('제목을 입력하세요.');
-                    document.forms[0].title.focus();
+                    fr.title.focus();
                     return false;
                 }
         
-                if (wrtier == null || wrtier == "") {
+                if (fr.wrtier.value == null || fr.wrtier.value == "") {
                     alert('작성자를 입력하세요.');
-                    document.forms[0].wrtier.focus();
+                    fr.wrtier.focus();
                     return false;
                 }
         
@@ -54,5 +32,13 @@
                 }
             }
         </script>
+
+        <form name="fr" action="post.html" method="post" onsubmit="return formCheck()">
+            제목 : <input type="text" name="title"/><br/>
+            작성자 : <input type="text" name="writer"/><br/>
+            날짜 : <input type="text" name="regdate" /><br/>
+            content : <textarea rows="10" cols="20" name="content"></textarea><br>
+            <input type="submit"/>
+        </form>
     </body>
 </html>
