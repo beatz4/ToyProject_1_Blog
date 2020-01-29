@@ -5,14 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script language="JavaScript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-    <script src="header.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-1.11.0.js"
+            integrity="sha256-zgND4db0iXaO7v4CLBIYHGoIIudWI5hRMQrPB20j0Qw="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(document).ready( function() {
+        $("#header").load("header.html");
+      });
     </script>
-
   </head>
 
   <body>
-    <div style="width:100%; background-color: yellow;" id="header"></div>
+    <div id="header"></div>
     <!-- TOP MENU -->
     <!-- <div class="top-nav">
       <a id="nav-item" href="index.html">HOME</a>
