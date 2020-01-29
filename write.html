@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>글쓰기</title>        
+    </head>
+    <body>
+        <form action="post.html" method="post" onsubmit="return formCheck();">
+            제목 : <input type="text" name="title"/><br/>
+            작성자 : <input type="text" name="writer"/><br/>
+            날짜 : <input type="text" name="regdate" /><br/>
+            content : <textarea rows="10" cols="20" name="content"></textarea><br>
+            <input type="submit" />
+        </form>
+        <script>
+            function formCheck() {
+                var title = document.forms[0].title.value;
+                alert('title');
+        
+                var wrtier = document.forms[0].wrtier.value;
+        
+                alert('wrtier');
+                if (wrtier == null || wrtier == "") {
+                    alert('fucking');
+                }
+        
+                var regdate = document.forms[0].regdate.value;
+                var content = document.forms[0].content.value;
+        
+                alert(title);
+                
+                if (title == null || title == "") {
+                    alert('제목을 입력하세요.');
+                    document.forms[0].title.focus();
+                    return false;
+                }
+        
+                if (wrtier == null || wrtier == "") {
+                    alert('작성자를 입력하세요.');
+                    document.forms[0].wrtier.focus();
+                    return false;
+                }
+        
+                if (content == null || content == "") {
+                    alert('내용을 입력하세요.');
+                    document.forms[0].content.focus();
+                    return false;
+                }
+        
+                if (regdate == null || regdate == "") {
+                    alert('날짜를 입력하세요.');
+                    document.forms[0].regdate.focus();
+                    return false;
+                }
+            }
+        </script>
+    </body>
+</html>
