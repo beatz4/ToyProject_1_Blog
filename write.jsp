@@ -43,7 +43,7 @@
             }
         </script>
 
-        <form name="fr" action="post.jsp" method="post" onsubmit="return formCheck();">
+        <form name="fr" action="insert.jsp" method="post" onsubmit="return formCheck();">
             제목 : <input type="text" name="title" id="name"/><br/>
             작성자 : <input type="text" name="writer"id="writer"/><br/>
             날짜 : <input type="text" name="regdate" /><br/>
